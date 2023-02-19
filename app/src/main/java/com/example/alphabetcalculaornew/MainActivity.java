@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener{
 
     TextView textResult;
     ImageView buttonOne,buttonTwo,buttonThree,buttonFour,buttonFive,buttonSix,buttonSeven,buttonEight,buttonNine,buttonDivide;
@@ -23,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        buttonsClicked();
+//        buttonsClicked();
+
+        //inheriting the interface directly instead of creating object each time
+        buttonsClickedNew(); //this is for the new implementation.
+
+
         database=new Database(MainActivity.this);
         textResult.setText("0");
     }
@@ -246,6 +251,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //------------------FOR DATABaSE------------
 //        database.updateValues(1,""+res);
     }
 
@@ -276,7 +283,157 @@ public class MainActivity extends AppCompatActivity {
         buttonResult=findViewById(R.id.button_equals);
 
 
+    }
 
+//    ================================UPDATED==============================================
+
+
+    private void buttonsClickedNew(){
+        buttonOne.setOnClickListener(this);
+        buttonTwo.setOnClickListener(this);
+        buttonThree.setOnClickListener(this);
+        buttonFour.setOnClickListener(this);
+        buttonFive.setOnClickListener(this);
+        buttonSix.setOnClickListener(this);
+        buttonSeven.setOnClickListener(this);
+        buttonEight.setOnClickListener(this);
+        buttonNine.setOnClickListener(this);
+        buttonZero.setOnClickListener(this);
+        buttonZero.setOnLongClickListener(this);
+        buttonAdd.setOnClickListener(this);
+        buttonSubtract.setOnClickListener(this);
+        buttonMultiply.setOnClickListener(this);
+        buttonDivide.setOnClickListener(this);
+        buttonClear.setOnClickListener(this);
+        buttonResult.setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View view) {
+        if(view==buttonOne){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("1");
+            else textResult.setText(getInput+1);
+        }else if (view==buttonTwo){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("2");
+            else textResult.setText(getInput+2);
+        }else if (view==buttonThree){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("3");
+            else textResult.setText(getInput+3);
+        }else if (view==buttonFour){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("4");
+            else textResult.setText(getInput+4);
+        }else if (view==buttonFive){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("5");
+            else textResult.setText(getInput+5);
+        }else if (view==buttonSix){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("6");
+            else textResult.setText(getInput+6);
+        }else if (view==buttonSeven){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("7");
+            else textResult.setText(getInput+7);
+        }else if (view==buttonEight){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("8");
+            else textResult.setText(getInput+8);
+        }else if (view==buttonNine){
+            String getInput=textResult.getText().toString();
+            if(getInput.equals("0")) textResult.setText("9");
+            else textResult.setText(getInput+9);
+        }else if (view==buttonZero){
+            String getInput=textResult.getText().toString();
+            if(!getInput.equals("0")) textResult.setText(getInput+"0");
+        }else if (view==buttonClear){
+            String getInput=textResult.getText().toString();
+            if(!getInput.equals("0")) textResult.setText("0");
+            buttonZero.setLongClickable(true);
+        }
+        if(view==buttonAdd){
+            buttonAdd.setClickable(false);
+            buttonZero.setLongClickable(true);
+            buttonSubtract.setClickable(false);
+            buttonMultiply.setClickable(false);
+            buttonDivide.setClickable(false);
+            opr=1;
+            firstHalf=textResult.getText().toString();
+            textResult.setText("");
+        }
+        else if(view==buttonMultiply){
+            buttonAdd.setClickable(false);
+            buttonSubtract.setClickable(false);
+            buttonZero.setLongClickable(true);
+            buttonMultiply.setClickable(false);
+            buttonDivide.setClickable(false);
+            opr=2;
+            firstHalf=textResult.getText().toString();
+            textResult.setText("");
+        }
+        else if(view==buttonDivide){
+            buttonAdd.setClickable(false);
+            buttonZero.setLongClickable(true);
+            buttonSubtract.setClickable(false);
+            buttonMultiply.setClickable(false);
+            buttonDivide.setClickable(false);
+            opr=3;
+            firstHalf=textResult.getText().toString();
+            textResult.setText("");
+
+        }
+        else if(view==buttonSubtract){
+            buttonZero.setLongClickable(true);
+            buttonAdd.setClickable(false);
+            buttonSubtract.setClickable(false);
+            buttonMultiply.setClickable(false);
+            buttonDivide.setClickable(false);
+            opr=4;
+            firstHalf=textResult.getText().toString();
+            textResult.setText("");
+        }
+        if(view==buttonResult){
+            buttonAdd.setClickable(true);
+            buttonZero.setLongClickable(true);
+            buttonSubtract.setClickable(true);
+            buttonMultiply.setClickable(true);
+            buttonDivide.setClickable(true);
+            double a=Double.parseDouble(firstHalf);
+            double b=Double.parseDouble(textResult.getText().toString());
+            if(opr==1){
+                res=a+b;
+                String resString=res+"";
+                textResult.setText(resString.replace(".0",""));
+            }else if(opr==2){
+                res=a*b;
+                String resString=res+"";
+                textResult.setText(resString.replace(".0",""));
+            }else if(opr==3){
+                if(b==0) textResult.setText("Infinity");
+                else{res=a/b;
+                String resString=res+"";
+                textResult.setText(resString.replace(".0",""));}
+            }else if(opr==4){
+                res=a-b;
+                String resString=res+"";
+                textResult.setText(resString.replace(".0",""));
+            }
+        }
 
     }
+
+    @Override
+    public boolean onLongClick(View view) {
+        if(view==buttonZero){
+            String getInput=textResult.getText().toString();
+            if(getInput.isEmpty()) textResult.setText("0.");
+            else{textResult.setText(getInput+".");
+            buttonZero.setLongClickable(false);}
+        }
+        return true;
+    }
+
+
 }
