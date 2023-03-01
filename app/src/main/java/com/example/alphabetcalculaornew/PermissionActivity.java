@@ -41,6 +41,8 @@ public class PermissionActivity extends AppCompatActivity {
                 boolean checkRead=readPermission==PackageManager.PERMISSION_GRANTED;
                 boolean checkWrite=writePermission==PackageManager.PERMISSION_GRANTED;
                 if(checkRead&&checkWrite){
+                    Database database=Database.getDB(this);
+                    database.valuesDAO().addValue(new ValuesDB("0"));
                     startActivity(main);
                 }else{
                     Toast.makeText(this, "Permission Denied, SHUTTING DOWN!", Toast.LENGTH_LONG).show();

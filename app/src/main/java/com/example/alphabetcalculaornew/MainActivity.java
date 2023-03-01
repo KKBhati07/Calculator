@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView buttonMultiply,buttonAdd,buttonSubtract,buttonResult,buttonClear,buttonZero,buttonDot;
     private int opr = 0;
     private String firstHalf="0";
-    Database database;
     double res=0f;
+    Database value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,10 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //inheriting the interface directly instead of creating object each time
         buttonsClickedNew(); //this is for the new implementation.
-
-
-        database=new Database(MainActivity.this);
-        textResult.setText("0");
+        value=Database.getDB(this);
+        textResult.setText(value.valuesDAO().getValue());
     }
 
     private void buttonsClicked() {
@@ -256,11 +254,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        database.updateValues(1,""+res);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        database.updateValues(1,""+res);
-//        super.onDestroy();
-//    }
 
     private void init(){
         textResult=findViewById(R.id.text_result);
@@ -406,20 +399,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 res=a+b;
                 String resString=res+"";
                 textResult.setText(resString.replace(".0",""));
+                value.valuesDAO().updateValue(new ValuesDB(1,resString.replace(".0","")));
             }else if(opr==2){
                 res=a*b;
                 String resString=res+"";
                 textResult.setText(resString.replace(".0",""));
+                value.valuesDAO().updateValue(new ValuesDB(1,resString.replace(".0","")));
             }else if(opr==3){
                 if(b==0) textResult.setText("Infinity");
                 else{res=a/b;
                 String resString=res+"";
-                textResult.setText(resString.replace(".0",""));}
+                textResult.setText(resString.replace(".0",""));
+                    value.valuesDAO().updateValue(new ValuesDB(1,resString.replace(".0","")));}
             }else if(opr==4){
                 res=a-b;
                 String resString=res+"";
                 textResult.setText(resString.replace(".0",""));
+                value.valuesDAO().updateValue(new ValuesDB(1,resString.replace(".0","")));
             }
+
+
         }
 
     }

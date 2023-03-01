@@ -1,8 +1,13 @@
 package com.example.alphabetcalculaornew;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -25,9 +30,16 @@ public class SplashActivty extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent toMainActivityIntent=new Intent(getApplicationContext(),PermissionActivity.class);
-                startActivity(toMainActivityIntent);
-                finish();
+                if(permissionGranted()){
+                    Intent toMainActivityIntent=new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(toMainActivityIntent);
+                    finish();
+                }else{
+                    Intent toPermissionActivityIntent=new Intent(getApplicationContext(),PermissionActivity.class);
+                    startActivity(toPermissionActivityIntent);
+                    finish();
+                }
+
             }
         },1200);
         splashIconAnim=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
@@ -38,5 +50,17 @@ public class SplashActivty extends AppCompatActivity {
 
     private void initViews() {
         splashIcon=findViewById(R.id.splashIcon);
+    }
+    private boolean permissionGranted() {
+        int check=0;
+        int result= ActivityCompat.checkSelfPermission(SplashActivty.this,READ_EXTERNAL_STORAGE);
+        if(result== PackageManager.PERMISSION_GRANTED){
+            check++;
+        }
+        int result1=ActivityCompat.checkSelfPermission(SplashActivty.this,WRITE_EXTERNAL_STORAGE);
+        if(result==PackageManager.PERMISSION_GRANTED){
+            check++;
+        }
+        return check==2;
     }
 }
