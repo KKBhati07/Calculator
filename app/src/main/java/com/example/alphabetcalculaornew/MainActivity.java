@@ -344,6 +344,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if (view==buttonClear){
             String getInput=textResult.getText().toString();
             if(!getInput.equals("0")) textResult.setText("0");
+            value.valuesDAO().updateValue(new ValuesDB(1,"0"));
             buttonZero.setLongClickable(true);
         }
         if(view==buttonAdd){
