@@ -1,0 +1,48 @@
+
+C
+java:S1604/"(Make this anonymous inner class a lambda(ôèıÿÿÿÿ
+C
+java:S1604:"(Make this anonymous inner class a lambda(¥÷’œøÿÿÿÿ
+>
+java:S1604E"(Make this anonymous inner class a lambda(Å­‘ñ
+=
+java:S1604P"(Make this anonymous inner class a lambda(±Şíg
+>
+java:S1604["(Make this anonymous inner class a lambda(ï²şÂ
+C
+java:S1604f"(Make this anonymous inner class a lambda(‰°ûîûÿÿÿÿ
+>
+java:S1604q"(Make this anonymous inner class a lambda(ùñÏÉ
+C
+java:S1604|"(Make this anonymous inner class a lambda(îŒ¥®ıÿÿÿÿ
+D
+java:S1604‡"(Make this anonymous inner class a lambda(é´û¯ÿÿÿÿÿ
+D
+java:S1604"(Make this anonymous inner class a lambda(ò¡ü…úÿÿÿÿ
+?
+java:S1604œ"(Make this anonymous inner class a lambda(‹Îš‡
+D
+java:S1604¹"(Make this anonymous inner class a lambda(„€¶¾øÿÿÿÿ
+D
+java:S1604Æ"(Make this anonymous inner class a lambda(·Àİäúÿÿÿÿ
+>
+java:S1604Ó"(Make this anonymous inner class a lambda(èîÿ
+D
+java:S1604à"(Make this anonymous inner class a lambda(©øõÍıÿÿÿÿ
+\
+java:S1659"FDeclare "buttonTwo" and all following declarations on a separate line.(ş’‰İ
+a
+java:S1659"FDeclare "buttonAdd" and all following declarations on a separate line.(³–¾Åüÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(İşØÜûÿÿÿÿ
+g
+java:S3776""RRefactor this method to reduce its Cognitive Complexity from 39 to the 15 allowed.(£ÂñE
+W	java:S125®"<This block of commented-out lines of code should be removed.(ÚõÆ©üÿÿÿÿ
+W	java:S125¼"<This block of commented-out lines of code should be removed.(¸øˆüÿÿÿÿ
+R	java:S125Í"<This block of commented-out lines of code should be removed.(õ¢èÄ
+W	java:S125Ú"<This block of commented-out lines of code should be removed.(à˜¤Úÿÿÿÿÿ
+W	java:S125ş"<This block of commented-out lines of code should be removed.(Ü¸Õ¸øÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(ÅÎóä
+n
+java:S3776°"RRefactor this method to reduce its Cognitive Complexity from 56 to the 15 allowed.(Ğ¸™áúÿÿÿÿ
+H
+java:S1144""3Remove this unused private "buttonsClicked" method.(£ÂñE

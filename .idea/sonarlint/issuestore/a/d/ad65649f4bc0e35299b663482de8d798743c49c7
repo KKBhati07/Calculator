@@ -1,0 +1,13 @@
+
+>
+java:S1604"(Make this anonymous inner class a lambda(†£°î
+E
+java:S1874"/Remove this use of "Handler"; it is deprecated.(’Ú©Š
+Q
+java:S1854<";Remove this useless assignment to local variable "result1".(ŸáÆÕ
+r
+java:S32528"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(Û®×Úûÿÿÿÿ
+m
+java:S3252<"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(ŸáÆÕ
+B
+java:S1481<",Remove this unused "result1" local variable.(ŸáÆÕ

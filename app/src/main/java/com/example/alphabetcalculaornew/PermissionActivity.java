@@ -13,16 +13,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
+
+//ACTIVITY PAGE TO GET STORAGE PERMISSION OF THE DEVICE FROM USER
 public class PermissionActivity extends AppCompatActivity {
+    //declaring request code
     private static final int REQ_CODE=100;
     Intent main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setting up the layout
         setContentView(R.layout.activity_permission);
         main=new Intent(PermissionActivity.this,MainActivity.class);
 
+        //if the permission is granted
         if(permissionGranted()){
             startActivity(main);
         }else{
@@ -43,10 +48,13 @@ public class PermissionActivity extends AppCompatActivity {
                 if(checkRead&&checkWrite){
                     Database database=Database.getDB(this);
                     database.valuesDAO().addValue(new ValuesDB("0"));
+//                    redirecting to the main activity of the app
                     startActivity(main);
                 }else{
+                    //notifying the user with Toast
                     Toast.makeText(this, "Permission Denied, SHUTTING DOWN!", Toast.LENGTH_LONG).show();
                     Handler handler=new Handler();
+                    //exiting the app after 5secs
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -57,19 +65,22 @@ public class PermissionActivity extends AppCompatActivity {
                 }
             }
         }
+//        calling the super function
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
+    //method to check the permission is granted or not
     private boolean permissionGranted() {
-        int check=0;
-        int result=ActivityCompat.checkSelfPermission(PermissionActivity.this,READ_EXTERNAL_STORAGE);
-        if(result== PackageManager.PERMISSION_GRANTED){
-            check++;
-        }
-        int result1=ActivityCompat.checkSelfPermission(PermissionActivity.this,WRITE_EXTERNAL_STORAGE);
-        if(result==PackageManager.PERMISSION_GRANTED){
-            check++;
-        }
-        return check==2;
+        //variable to check for each permission
+        boolean readPermission=false, writePermission=false;
+
+        //FOR READ PERMISSION
+        int getReadPermission=ActivityCompat.checkSelfPermission(PermissionActivity.this,READ_EXTERNAL_STORAGE);
+        if(getReadPermission== PackageManager.PERMISSION_GRANTED) readPermission=true;
+
+        //FOR WRITE PERMISSION
+        int getWritePermission=ActivityCompat.checkSelfPermission(PermissionActivity.this,WRITE_EXTERNAL_STORAGE);
+        if(getWritePermission==PackageManager.PERMISSION_GRANTED) writePermission=true;
+
+        return readPermission && writePermission;
     }
 }

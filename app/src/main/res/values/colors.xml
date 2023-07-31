@@ -10,4 +10,5 @@
     <color name="number_button_colors">#FF5101</color>
     <color name="operator_buttons">#6C6262</color>
     <color name="on_clicked">#F10505</color>
+    <color name="notification">#FF7F44</color>
 </resources>

@@ -8,11 +8,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+//inheriting the interface directly instead of creating object each time
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener{
 
+
+//    declaring the views with variables
     TextView textResult;
     ImageView buttonOne,buttonTwo,buttonThree,buttonFour,buttonFive,buttonSix,buttonSeven,buttonEight,buttonNine,buttonDivide;
     ImageView buttonMultiply,buttonAdd,buttonSubtract,buttonResult,buttonClear,buttonZero,buttonDot;
+
+    //to check the used operator type
     private int opr = 0;
     private String firstHalf="0";
     double res=0f;
@@ -20,241 +26,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //calling the method initialize the variables with the views
         init();
-//        buttonsClicked();
 
-        //inheriting the interface directly instead of creating object each time
         buttonsClickedNew(); //this is for the new implementation.
         value=Database.getDB(this);
         textResult.setText(value.valuesDAO().getValue());
     }
 
-    private void buttonsClicked() {
-        buttonOne.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceType")
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+1);
-                }else{
-                    textResult.setText("1");
-                }
-            }
-        });
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+2);
-                }else{
-                    textResult.setText("2");
-                }
-            }
-        });
-        buttonThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+3);
-                }else{
-                    textResult.setText("3");
-                }
-            }
-        });
-        buttonFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+4);
-                }else{
-                    textResult.setText("4");
-                }
-            }
-        });
-        buttonFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+5);
-                }else{
-                    textResult.setText("5");
-                }
-            }
-        });
-        buttonSix.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+6);
-                }else{
-                    textResult.setText("6");
-                }
-            }
-        });
-        buttonSeven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+7);
-                }else{
-                    textResult.setText("7");
-                }
-            }
-        });
-        buttonEight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+8);
-                }else{
-                    textResult.setText("8");
-                }
-            }
-        });
-        buttonNine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+9);
-                }else{
-                    textResult.setText("9");
-                }
-            }
-        });
-        buttonZero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput=textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    textResult.setText(gettingInput+0);
-                }
-            }
-        });
-        buttonZero.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                String gettingInput= textResult.getText().toString();
-                if(!gettingInput.contains(".")){
-                    textResult.setText(gettingInput+".");
-                }else if(gettingInput.equals("")){
-                    textResult.setText("0.");
-                }
-                return true;
-            }
-        });
-        buttonClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String gettingInput=textResult.getText().toString();
-                if(!gettingInput.equals("0")){
-                    buttonAdd.setClickable(true);
-                    buttonSubtract.setClickable(true);
-                    buttonMultiply.setClickable(true);
-                    buttonDivide.setClickable(true);
-                    textResult.setText("0");
-                }
-            }
-        });
-        //==============================OPERATOR BUTTONS==========================
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onClick(View v) {
-//                buttonAdd.setColorFilter(R.color.on_clicked);
-//                buttonAdd.setBackgroundColor(R.color.on_clicked);
-                buttonAdd.setClickable(false);
-                buttonSubtract.setClickable(false);
-                buttonMultiply.setClickable(false);
-                buttonDivide.setClickable(false);
-                opr=1;
-                firstHalf=textResult.getText().toString();
-                textResult.setText("");
-            }
-        });
-        buttonMultiply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                buttonMultiply.setColorFilter(R.color.on_clicked);
-                buttonAdd.setClickable(false);
-                buttonSubtract.setClickable(false);
-                buttonMultiply.setClickable(false);
-                buttonDivide.setClickable(false);
-                opr=2;
-                firstHalf=textResult.getText().toString();
-                textResult.setText("");
-            }
-        });
-        buttonDivide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonAdd.setClickable(false);
-                buttonSubtract.setClickable(false);
-                buttonMultiply.setClickable(false);
-                buttonDivide.setClickable(false);
-//                buttonDivide.setColorFilter(R.color.on_clicked);
-                opr=3;
-                firstHalf=textResult.getText().toString();
-                textResult.setText("");
-            }
-        });
-        buttonSubtract.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonAdd.setClickable(false);
-                buttonSubtract.setClickable(false);
-                buttonMultiply.setClickable(false);
-                buttonDivide.setClickable(false);
-//                buttonSubtract.setColorFilter(R.color.on_clicked);
-                opr=4;
-                firstHalf=textResult.getText().toString();
-                textResult.setText("");
-            }
-        });
-        buttonResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonAdd.setClickable(true);
-                buttonSubtract.setClickable(true);
-                buttonMultiply.setClickable(true);
-                buttonDivide.setClickable(true);
-                double a=Double.parseDouble(firstHalf);
-                double b=Double.parseDouble(textResult.getText().toString());
-                if(opr==1){
-                   res=a+b;
-                   String resString=res+"";
-                   textResult.setText(resString.replace(".0",""));
-                }else if(opr==2){
-                    res=a*b;
-                    String resString=res+"";
-                    textResult.setText(resString.replace(".0",""));
-                }else if(opr==3){
-                    res=a/b;
-                    String resString=res+"";
-                    textResult.setText(resString.replace(".0",""));
-                }else if(opr==4){
-                    res=a-b;
-                    String resString=res+"";
-                    textResult.setText(resString.replace(".0",""));
-                }
-            }
-        });
-
-        //------------------FOR DATABaSE------------
-//        database.updateValues(1,""+res);
-    }
-
-
+//    method initialize the variables with the views
     private void init(){
         textResult=findViewById(R.id.text_result);
         buttonOne=findViewById(R.id.button_one);
@@ -267,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonEight=findViewById(R.id.button_eight);
         buttonNine=findViewById(R.id.button_nine);
         buttonZero=findViewById(R.id.button_zero);
-//        buttonDot=findViewById(R.id.button_dot);
         buttonClear=findViewById(R.id.button_clear);
         buttonDivide=findViewById(R.id.button_divide);
         buttonSubtract=findViewById(R.id.button_subtract);
@@ -278,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-//    ================================UPDATED==============================================
+//    ================================LISTENERS==============================================
 
-
+    //method to set up the click listeners on buttons
     private void buttonsClickedNew(){
         buttonOne.setOnClickListener(this);
         buttonTwo.setOnClickListener(this);
@@ -300,8 +82,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonClear.setOnClickListener(this);
         buttonResult.setOnClickListener(this);
     }
+
+//    method to listen the click
     @Override
     public void onClick(View view) {
+        //FOR INPUT BUTTONS
         if(view==buttonOne){
             String getInput=textResult.getText().toString();
             if(getInput.equals("0")) textResult.setText("1");
@@ -347,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             value.valuesDAO().updateValue(new ValuesDB(1,"0"));
             buttonZero.setLongClickable(true);
         }
+        //FOR OPERATOR BUTTONS
         if(view==buttonAdd){
             buttonAdd.setClickable(false);
             buttonZero.setLongClickable(true);
@@ -388,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             firstHalf=textResult.getText().toString();
             textResult.setText("");
         }
+        //FOR RESULT
         if(view==buttonResult){
             buttonAdd.setClickable(true);
             buttonZero.setLongClickable(true);
@@ -424,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+//    setting up the long click listener
     @Override
     public boolean onLongClick(View view) {
         if(view==buttonZero){

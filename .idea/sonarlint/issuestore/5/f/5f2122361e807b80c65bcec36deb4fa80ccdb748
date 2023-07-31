@@ -1,0 +1,17 @@
+
+J
+java:S1066&"/Merge this if statement with the enclosing one.(ÎóÙôøÿÿÿÿ
+>
+java:S16042"(Make this anonymous inner class a lambda(†£°î
+e
+java:S1874$"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ
+E
+java:S18741"/Remove this use of "Handler"; it is deprecated.(’Ú©Š
+V
+java:S1854E";Remove this useless assignment to local variable "result1".(¶ËÆ‹üÿÿÿÿ
+r
+java:S3252A"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(à³•Ùúÿÿÿÿ
+r
+java:S3252E"WUse static access with "androidx.core.content.ContextCompat" for "checkSelfPermission".(¶ËÆ‹üÿÿÿÿ
+G
+java:S1481E",Remove this unused "result1" local variable.(¶ËÆ‹üÿÿÿÿ

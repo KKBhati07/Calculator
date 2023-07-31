@@ -14,7 +14,7 @@ public class ValuesDB {
 
     public ValuesDB(int id,String value){
         //this is the main constructor
-        //and will be user for updation, deletion and fetching
+        //and will be used for updating, deletion and fetching
         this.id=id;
         this.value=value;
     }

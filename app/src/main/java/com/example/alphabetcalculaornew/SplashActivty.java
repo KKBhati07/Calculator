@@ -15,6 +15,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class SplashActivty extends AppCompatActivity {
+
+//    getting the views
     ImageView splashIcon;
     Animation splashIconAnim;
 
@@ -30,37 +32,46 @@ public class SplashActivty extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+//                checking for storage permissions
                 if(permissionGranted()){
                     Intent toMainActivityIntent=new Intent(getApplicationContext(),MainActivity.class);
+//                    redirecting to main activity
                     startActivity(toMainActivityIntent);
+                    //removing current activity from the stack
                     finish();
                 }else{
                     Intent toPermissionActivityIntent=new Intent(getApplicationContext(),PermissionActivity.class);
+//                    redirecting to permission activity
                     startActivity(toPermissionActivityIntent);
+                    //removing current activity from the stack
                     finish();
                 }
 
             }
         },1200);
+        //displaying the animation
         splashIconAnim=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
         splashIcon.startAnimation(splashIconAnim);
 
 
     }
-
+    //initializing the views
     private void initViews() {
         splashIcon=findViewById(R.id.splashIcon);
     }
+
+    //method to check permissions are granted or not
     private boolean permissionGranted() {
-        int check=0;
-        int result= ActivityCompat.checkSelfPermission(SplashActivty.this,READ_EXTERNAL_STORAGE);
-        if(result== PackageManager.PERMISSION_GRANTED){
-            check++;
-        }
-        int result1=ActivityCompat.checkSelfPermission(SplashActivty.this,WRITE_EXTERNAL_STORAGE);
-        if(result==PackageManager.PERMISSION_GRANTED){
-            check++;
-        }
-        return check==2;
+        boolean readPermission=false, writePermission=false;
+
+        //FOR READ PERMISSION
+        int getReadPermission= ActivityCompat.checkSelfPermission(SplashActivty.this,READ_EXTERNAL_STORAGE);
+        if(getReadPermission== PackageManager.PERMISSION_GRANTED) readPermission=true;
+
+        //FOR WRITE PERMISSION
+        int getWritePermission=ActivityCompat.checkSelfPermission(SplashActivty.this,WRITE_EXTERNAL_STORAGE);
+        if(getWritePermission==PackageManager.PERMISSION_GRANTED) writePermission=true;
+
+        return readPermission && writePermission;
     }
 }
